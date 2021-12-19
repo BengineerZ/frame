@@ -72,9 +72,9 @@ GPIO.setup(BUTTONS, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 def handle_button(pin):
     label = LABELS[BUTTONS.index(pin)]
     print("Button press detected on pin: {} label: {}".format(pin, label))
-    if label == 'A':
-    	print('manual update')
-    	update_image()
+    # if label == 'A':
+    # 	print('manual update')
+    # 	update_image()
 
 
 # Loop through out buttons and attach the "handle_button" function to each
