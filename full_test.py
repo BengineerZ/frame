@@ -14,6 +14,7 @@ print("starting")
 
 path = "/media/pi/*/*"
 device_path = "/media/pi/*"
+global device_list
 device_list = []
 
 def check_usb():
