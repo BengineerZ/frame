@@ -28,8 +28,7 @@ def eject_usb():
 		print(f"Ejecting {device_list[0]}")
 		cmd = f"sudo umount {device_list[0]}"
 		os.system(cmd)
-		global device_list
-		device_list = []
+		return []
 	else: 
 		print("no device inserted")
 
@@ -63,7 +62,7 @@ def handle_button(pin):
     label = LABELS[BUTTONS.index(pin)]
     print("Button press detected on pin: {} label: {}".format(pin, label))
     if label == 'D':
-    	eject_usb()
+    	device_list = eject_usb()
 
 # Loop through out buttons and attach the "handle_button" function to each
 # We're watching the "FALLING" edge (transition from 3.3V to Ground) and
