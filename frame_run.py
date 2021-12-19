@@ -83,6 +83,7 @@ print(time.time())
 def main():
 	for i in range(5):
 		t = threading.Thread(target=update_image)
+		t.start()
 		time.sleep(4)
 
 main()
