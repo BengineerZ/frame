@@ -1,6 +1,20 @@
 import sched, time
 import signal
 import RPi.GPIO as GPIO
+import os
+
+print("insert usb stick")
+time.sleep(10)
+print("starting")
+
+# Get the list of all files and directories
+path = "/media/pi/frame"
+dir_list = os.listdir(path)
+ 
+print("Files and directories in '", path, "' :")
+ 
+# prints all files
+print(dir_list)
 
 
 ''' Functionality:
@@ -12,6 +26,7 @@ C - play the 24 hr loop
 D - display the base image
 
 '''
+
 
 
 s = sched.scheduler(time.time, time.sleep)
