@@ -9,7 +9,7 @@ time.sleep(10)
 print("starting")
 
 # Get the list of all files and directories
-path = "/media/pi/*/"
+path = "/media/pi/*/*"
 
 for file in glob.iglob(path, recursive=True):
     print(file)
