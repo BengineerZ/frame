@@ -23,13 +23,13 @@ def check_usb():
 	
 	print(len(device_list))
 	if len(device_list) == 1:
-		return True
-	return False
+		return True, device_list
+	return False, device_list
 
 while not usb_inserted:
 	print("Please insert USB device")
 	time.sleep(5)
-	usb_inserted = check_usb()
+	usb_inserted, device_list = check_usb()
 
 print("Device inserted, ejecting")
 print(device_list[0])
