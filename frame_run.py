@@ -10,18 +10,18 @@ from PIL import Image
 
 inky = Inky()
 
-print("insert usb stick")
-time.sleep(10)
-print("starting")
+# print("insert usb stick")
+# time.sleep(10)
+# print("starting")
 
-# Get the list of all files and directories
-path = "/media/pi/*/*"
+# # Get the list of all files and directories
+# path = "/media/pi/*/*"
 
-file_list = []
-for file in glob.iglob(path, recursive=True):
-	file_list.append(file)
+# file_list = []
+# for file in glob.iglob(path, recursive=True):
+# 	file_list.append(file)
 
-print(file_list)
+# print(file_list)
 
 
 ''' Functionality:
