@@ -23,7 +23,7 @@ def check_usb():
 		device_list.append(file)
 	print(f'Num of devices: {len(device_list)}')
 
-def eject_usb():
+def eject_usb(device_list = device_list):
 	if len(device_list) == 1:
 		print(f"Ejecting {device_list[0]}")
 		cmd = f"sudo umount {device_list[0]}"
