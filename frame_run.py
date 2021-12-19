@@ -35,9 +35,6 @@ D - display the base image
 '''
 
 
-
-s = sched.scheduler(time.time, time.sleep)
-
 def update_image():
 	print("placeholder: updating image ...")
 	print(time.time())
