@@ -49,7 +49,7 @@ def update_image():
 
 
 def update_loop():
-	s.enter(40, 1, update_image, ())
+	s.enter(100, 1, update_image, ())
 	s.run()
 
 
