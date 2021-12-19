@@ -41,7 +41,7 @@ def update_image():
 	print("placeholder: updating image ...")
 	print(time.time())
 	im = Image.open(random.choice(file_list))
-	im.resize((600, 448))
+	im.resize((448, 600))
 	inky.set_image(im)
 	inky.show()
 	# get a random image from the usb
@@ -49,7 +49,7 @@ def update_image():
 
 
 def update_loop():
-	s.enter(60, 1, update_image, ())
+	s.enter(40, 1, update_image, ())
 	s.run()
 
 
