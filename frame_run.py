@@ -1,4 +1,4 @@
-import shed, time
+import sched, time
 import signal
 import RPi.GPIO as GPIO
 
