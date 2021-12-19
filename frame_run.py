@@ -38,10 +38,10 @@ D - display the base image
 def update_image():
 	print("placeholder: updating image ...")
 	print(time.time())
-	im = Image.open(random.choice(file_list))
-	im = im.resize((600, 448))
-	inky.set_image(im)
-	inky.show()
+	# im = Image.open(random.choice(file_list))
+	# im = im.resize((600, 448))
+	# inky.set_image(im)
+	# inky.show()
 	# get a random image from the usb
 	# update the inky with a random image
 
@@ -83,6 +83,6 @@ print(time.time())
 def main():
 	for i in range(5):
 		t = threading.Thread(target=update_image)
-		time.sleep(60)
+		time.sleep(4)
 
 main()
