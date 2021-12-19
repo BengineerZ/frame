@@ -2,19 +2,17 @@ import sched, time
 import signal
 import RPi.GPIO as GPIO
 import os
+import glob
 
 print("insert usb stick")
 time.sleep(10)
 print("starting")
 
 # Get the list of all files and directories
-path = "/media"
-dir_list = os.listdir(path)
- 
-print("Files and directories in '", path, "' :")
- 
-# prints all files
-print(dir_list)
+path = "/media/pi/*/"
+
+for file in glob.iglob(path, recursive=True):
+    print(file)
 
 
 ''' Functionality:
