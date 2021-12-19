@@ -16,7 +16,10 @@ print("starting")
 # Get the list of all files and directories
 path = "/media/pi/*/*"
 
-file_list = glob.iglob(path, recursive=True)
+file_list = []
+for file in glob.iglob(path, recursive=True):
+	file_list.append(file)
+
 print(file_list)
 
 
