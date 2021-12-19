@@ -34,6 +34,7 @@ def eject_usb(pin):
 	if len(device_list) == 1:
 		print(f"Ejecting {device_list[0]}")
 		cmd = f"sudo umount {device_list[0]}"
+		os.system(cmd)
 		device_list.clear()
 	else: 
 		print("no device inserted")
