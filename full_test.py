@@ -26,19 +26,20 @@ def check_usb():
 		return True, device_list
 	return False, device_list
 
+def eject_usb(device_list):
+	if len(device_list) == 1:
+		print(f"Ejecting {device_list[0]}")
+		cmd = f"sudo umount {device_list[0]}"
+		os.system(cmd)
+		return False
+	else: 
+		print("no device inserted")
+
 while not usb_inserted:
 	print("Please insert USB device")
 	time.sleep(5)
 	usb_inserted, device_list = check_usb()
 
-print("Device inserted, ejecting")
-print(device_list[0])
-
-cmd = f"sudo umount {device_list[0]}"
-os.system(cmd)
-
-time.sleep(4)
-
-check_usb()
+usb_inserted = eject_usb(device_list)
 
 
