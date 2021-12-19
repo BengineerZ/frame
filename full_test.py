@@ -16,17 +16,17 @@ path = "/media/pi/*/*"
 device_path = "/media/pi/*"
 device_list = []
 
-def check_usb(device_list = device_list):
+def check_usb():
 	global device_list
 	device_list = []
 	for file in glob.iglob(device_path, recursive=False):
 		device_list.append(file)
 	print(f'Num of devices: {len(device_list)}')
 
-def eject_usb(device_list = device_list):
-	if len(device_list) == 1:
-		print(f"Ejecting {device_list[0]}")
-		cmd = f"sudo umount {device_list[0]}"
+def eject_usb(dlist = device_list):
+	if len(dlist) == 1:
+		print(f"Ejecting {dlist[0]}")
+		cmd = f"sudo umount {dlist[0]}"
 		os.system(cmd)
 		global device_list
 		device_list = []
