@@ -46,13 +46,16 @@ GPIO.setup(BUTTONS, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 def handle_button(pin):
     label = LABELS[BUTTONS.index(pin)]
     print("Button press detected on pin: {} label: {}".format(pin, label))
+    if label == 'A':
+    	print('manual update')
+    	update_image()
 
 
 # Loop through out buttons and attach the "handle_button" function to each
 # We're watching the "FALLING" edge (transition from 3.3V to Ground) and
 # picking a generous bouncetime of 250ms to smooth out button presses.
 
-GPIO.add_event_detect(BUTTONS[0], GPIO.FALLING, update_image, bouncetime=250)
+GPIO.add_event_detect(BUTTONS[0], GPIO.FALLING, handle_button, bouncetime=250)
 GPIO.add_event_detect(BUTTONS[1], GPIO.FALLING, handle_button, bouncetime=250)
 GPIO.add_event_detect(BUTTONS[2], GPIO.FALLING, handle_button, bouncetime=250)
 GPIO.add_event_detect(BUTTONS[3], GPIO.FALLING, handle_button, bouncetime=250)
