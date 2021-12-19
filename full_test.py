@@ -14,26 +14,19 @@ print("starting")
 
 path = "/media/pi/*/*"
 device_path = "/media/pi/*"
-usb_inserted = False
 device_list = []
 
 def check_usb():
-	device_list = []
 	for file in glob.iglob(device_path, recursive=False):
 		device_list.append(file)
+	print(f'Num of devices: {len(device_list)}')
 
-	
-	print(len(device_list))
-	if len(device_list) == 1:
-		return True, device_list
-	return False, device_list
-
-def eject_usb(device_list):
+def eject_usb():
 	if len(device_list) == 1:
 		print(f"Ejecting {device_list[0]}")
 		cmd = f"sudo umount {device_list[0]}"
 		os.system(cmd)
-		return False
+		device_list = []
 	else: 
 		print("no device inserted")
 
@@ -67,7 +60,7 @@ def handle_button(pin):
     label = LABELS[BUTTONS.index(pin)]
     print("Button press detected on pin: {} label: {}".format(pin, label))
     if label == 'D':
-    	usb_inserted = eject_usb(device_list)
+    	eject_usb(device_list)
 
 # Loop through out buttons and attach the "handle_button" function to each
 # We're watching the "FALLING" edge (transition from 3.3V to Ground) and
@@ -76,16 +69,18 @@ for pin in BUTTONS:
     GPIO.add_event_detect(pin, GPIO.FALLING, handle_button, bouncetime=250)
 
 
-
 ### MAIN:
 
-while not usb_inserted:
-	print("Please insert USB device")
-	time.sleep(5)
-	usb_inserted, device_list = check_usb()
-
-print(read_files())
-
-signal.pause()
+while True:
+	while len(device_list) == 0:
+		print("Please insert USB device")
+		time.sleep(5)
+		check_usb()
+	while len(device_list) == 1:
+		print(time.time())
+		image_list = read_files()
+		while len(device_list) == 1:
+			print('testing loop')
+			time.sleep(8)
 
 
