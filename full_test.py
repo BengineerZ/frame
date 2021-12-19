@@ -28,5 +28,5 @@ for file in glob.iglob(check_path, recursive=False):
 	device_list.append(file)
 
 
-print(file_list)
+# print(file_list)
 print(device_list)
