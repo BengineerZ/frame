@@ -10,18 +10,18 @@ from PIL import Image
 
 inky = Inky()
 
-# print("insert usb stick")
-# time.sleep(10)
-# print("starting")
+print("insert usb stick")
+time.sleep(10)
+print("starting")
 
-# # Get the list of all files and directories
-# path = "/media/pi/*/*"
+# Get the list of all files and directories
+path = "/media/pi/*/*"
 
-# file_list = []
-# for file in glob.iglob(path, recursive=True):
-# 	file_list.append(file)
+file_list = []
+for file in glob.iglob(path, recursive=True):
+	file_list.append(file)
 
-# print(file_list)
+print(file_list)
 
 
 ''' Functionality:
@@ -38,10 +38,10 @@ D - display the base image
 def update_image():
 	print("placeholder: updating image ...")
 	print(time.time())
-	# im = Image.open(random.choice(file_list))
-	# im = im.resize((600, 448))
-	# inky.set_image(im)
-	# inky.show()
+	im = Image.open(random.choice(file_list))
+	im = im.resize((600, 448))
+	inky.set_image(im)
+	inky.show()
 	# get a random image from the usb
 	# update the inky with a random image
 
@@ -64,9 +64,9 @@ GPIO.setup(BUTTONS, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 def handle_button(pin):
     label = LABELS[BUTTONS.index(pin)]
     print("Button press detected on pin: {} label: {}".format(pin, label))
-    # if label == 'A':
-    # 	print('manual update')
-    # 	update_image()
+    if label == 'A':
+    	print('manual update')
+    	update_image()
 
 
 # Loop through out buttons and attach the "handle_button" function to each
@@ -84,6 +84,6 @@ def main():
 	for i in range(5):
 		t = threading.Thread(target=update_image)
 		t.start()
-		time.sleep(4)
+		time.sleep(60)
 
 main()
