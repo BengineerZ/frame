@@ -31,7 +31,7 @@ def check_usb():
 
 def eject_usb(pin):
 	label = LABELS[BUTTONS.index(pin)]
-    print("Button press detected on pin: {} label: {}".format(pin, label))
+	print("Button press detected on pin: {} label: {}".format(pin, label))
 	if len(device_list) == 1:
 		print(f"Ejecting {device_list[0]}")
 		cmd = f"sudo umount {device_list[0]}"
