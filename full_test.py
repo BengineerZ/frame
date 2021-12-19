@@ -31,6 +31,7 @@ def eject_usb():
 		return []
 	else: 
 		print("no device inserted")
+		return device_list
 
 def read_files():
 	file_list = []
