@@ -17,6 +17,7 @@ device_path = "/media/pi/*"
 device_list = []
 
 def check_usb():
+	device_list = []
 	for file in glob.iglob(device_path, recursive=False):
 		device_list.append(file)
 	print(f'Num of devices: {len(device_list)}')
