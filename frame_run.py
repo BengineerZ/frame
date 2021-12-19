@@ -57,7 +57,7 @@ GPIO.add_event_detect(BUTTONS[1], GPIO.FALLING, handle_button, bouncetime=250)
 GPIO.add_event_detect(BUTTONS[2], GPIO.FALLING, handle_button, bouncetime=250)
 GPIO.add_event_detect(BUTTONS[3], GPIO.FALLING, handle_button, bouncetime=250)
 
-
+print(time.time())
 ## would be replaced with a while loop in the final version:
 for i in range(5):
 	print(i)
