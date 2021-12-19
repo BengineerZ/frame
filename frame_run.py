@@ -3,6 +3,11 @@ import signal
 import RPi.GPIO as GPIO
 import os
 import glob
+import random
+from inky import Inky7Colour as Inky
+from PIL import Image
+
+inky = Inky()
 
 print("insert usb stick")
 time.sleep(10)
@@ -11,8 +16,8 @@ print("starting")
 # Get the list of all files and directories
 path = "/media/pi/*/*"
 
-for file in glob.iglob(path, recursive=True):
-    print(file)
+file_list = glob.iglob(path, recursive=True):
+print(file_list)
 
 
 ''' Functionality:
@@ -32,11 +37,16 @@ s = sched.scheduler(time.time, time.sleep)
 def update_image():
 	print("placeholder: updating image ...")
 	print(time.time())
+	im = Image.open(random.choice(file_list))
+	im.resize((600, 448))
+	inky.set_image(im)
+	inky.show()
 	# get a random image from the usb
 	# update the inky with a random image
 
+
 def update_loop():
-	s.enter(5, 1, update_image, ())
+	s.enter(60, 1, update_image, ())
 	s.run()
 
 
