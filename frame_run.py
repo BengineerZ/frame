@@ -1,4 +1,5 @@
-import sched, time
+import time
+import threading
 import signal
 import RPi.GPIO as GPIO
 import os
@@ -47,12 +48,6 @@ def update_image():
 	# get a random image from the usb
 	# update the inky with a random image
 
-
-def update_loop():
-	s.enter(100, 1, update_image, ())
-	s.run()
-
-
 # Gpio pins for each button (from top to bottom)
 BUTTONS = [5, 6, 16, 24]
 
@@ -88,6 +83,9 @@ GPIO.add_event_detect(BUTTONS[3], GPIO.FALLING, handle_button, bouncetime=250)
 
 print(time.time())
 ## would be replaced with a while loop in the final version:
-for i in range(5):
-	print(i)
-	update_loop()
+def main():
+	for i in range(5):
+		t = threading.Thread(target=update_image)
+		time.sleep(60)
+
+main()
