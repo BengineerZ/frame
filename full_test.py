@@ -111,7 +111,7 @@ while True:
 		print(time.time())
 		image_list = read_files()
 		c = threading.Thread(target=check_loop)
-		# c.start()
+		c.start()
 		while len(device_list) == 1:
 			print('Photo loop')
 			# t = threading.Thread(target=update_image)
