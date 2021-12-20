@@ -54,7 +54,7 @@ def check_loop():
 		time.sleep(10)
 		print(time.time())
 
-	print('usb removed! :(')
+	print('usb removed')
 
 
 ### button setup
