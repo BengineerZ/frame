@@ -103,7 +103,6 @@ def update_image(file_list):
 ### MAIN:
 
 c = threading.Thread(target=check_loop)
-t = threading.Thread(target=update_image)
 
 while True:
 	while len(device_list) == 0:
@@ -117,5 +116,6 @@ while True:
 		time.sleep(2)
 		while len(device_list) == 1:
 			print('Photo loop')
+			t = threading.Thread(target=update_image, args=(image_list))
 			t.start()
 			time.sleep(60)
