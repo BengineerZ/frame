@@ -76,19 +76,19 @@ inky = Inky()
 
 def process_image(f_in, size=(600,448)):
 	image = Image.open(f_in)
-    image.thumbnail(size, Image.ANTIALIAS)
-    image_size = image.size
-    
-    thumb = image
-    
-    bg = Image.new('RGB', size, (255, 255, 255))
-    
-    offset_x = max( (size[0] - image_size[0]) // 2, 0 )
-    offset_y = max( (size[1] - image_size[1]) // 2, 0 )
-    
-    bg.paste(thumb, (offset_x, offset_y))
+	image.thumbnail(size, Image.ANTIALIAS)
+	image_size = image.size
+	
+	thumb = image
+	
+	bg = Image.new('RGB', size, (255, 255, 255))
+	
+	offset_x = max( (size[0] - image_size[0]) // 2, 0 )
+	offset_y = max( (size[1] - image_size[1]) // 2, 0 )
+	
+	bg.paste(thumb, (offset_x, offset_y))
 
-    return bg
+	return bg
 
 def update_image(file_list):
 	print("Updating image ...")
