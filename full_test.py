@@ -49,9 +49,9 @@ def read_files():
 
 def check_loop():
 	while len(device_list) == 1:
+		time.sleep(10)
 		print('checking if usb is still in')
 		check_usb()
-		time.sleep(10)
 		print(time.time())
 
 	print('usb removed')
@@ -116,6 +116,6 @@ while True:
 		time.sleep(2)
 		while len(device_list) == 1:
 			print('Photo loop')
-			t = threading.Thread(target=update_image, args=(image_list))
+			t = threading.Thread(target=update_image, args=(image_list,))
 			t.start()
 			time.sleep(60)
