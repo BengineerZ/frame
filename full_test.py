@@ -47,9 +47,15 @@ def read_files():
 	print(f'Number of files: {len(file_list)}')
 	return file_list
 
+def check_loop():
+	while len(device_list) == 1:
+		print('checking if usb is still in')
+		check_usb()
+		time.sleep(10)
+	print('usb removed! :(')
+
+
 ### button setup
-
-
 
 # Set up RPi.GPIO with the "BCM" numbering scheme
 GPIO.setmode(GPIO.BCM)
@@ -64,6 +70,33 @@ GPIO.setup(BUTTONS, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 GPIO.add_event_detect(BUTTONS[0], GPIO.FALLING, eject_usb, bouncetime=250)
 
+### Image setup:
+
+inky = Inky()
+
+def process_image(f_in, size=(600,448)):
+	image = Image.open(f_in)
+    image.thumbnail(size, Image.ANTIALIAS)
+    image_size = image.size
+    
+    thumb = image
+    
+    bg = Image.new('RGB', size, (255, 255, 255))
+    
+    offset_x = max( (size[0] - image_size[0]) // 2, 0 )
+    offset_y = max( (size[1] - image_size[1]) // 2, 0 )
+    
+    bg.paste(thumb, (offset_x, offset_y))
+
+    return bg
+
+def update_image(file_list):
+	print("Updating image ...")
+	print(time.time())
+	im = process_image(random.choice(file_list))
+	inky.set_image(im)
+	inky.show()
+
 
 ### MAIN:
 
@@ -75,9 +108,10 @@ while True:
 	while len(device_list) == 1:
 		print(time.time())
 		image_list = read_files()
+		c = threading.Thread(target=check_loop)
+		c.start()
 		while len(device_list) == 1:
-			print('testing loop')
-			print(device_list)
-			time.sleep(8)
-
-
+			print('Photo loop')
+			# t = threading.Thread(target=update_image)
+			# t.start()
+			time.sleep(4)
