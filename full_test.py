@@ -102,7 +102,17 @@ def update_image(file_list):
 
 ### MAIN:
 
-c = threading.Thread(target=check_loop)
+def photo_loop(file_list):
+	l = threading.currentThread()
+    while getattr(l, "do_run", True):
+        print('Photo loop')
+		t = threading.Thread(target=update_image, args=(file_list,))
+		t.start()
+		time.sleep(60)
+    print("Stopping as you wish.")
+		
+
+
 
 while True:
 	while len(device_list) == 0:
@@ -112,10 +122,15 @@ while True:
 	if len(device_list) == 1:
 		print(time.time())
 		image_list = read_files()
-		c.start()
+		l = threading.Thread(target=photo_loop, args=(image_list,))
+		l.start()
 		time.sleep(2)
 		while len(device_list) == 1:
-			print('Photo loop')
-			t = threading.Thread(target=update_image, args=(image_list,))
-			t.start()
-			time.sleep(60)
+			time.sleep(10)
+			print('checking if usb is still in')
+			check_usb()
+			print(time.time())
+
+		print('usb removed')
+		l.do_run = False
+			
