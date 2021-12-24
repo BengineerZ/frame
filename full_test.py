@@ -109,7 +109,7 @@ def photo_loop(file_list):
 		print('Photo loop')
 		t = threading.Thread(target=update_image, args=(file_list,))
 		t.start()
-		time.sleep(60)
+		time.sleep(100)
 	print("Stopping as you wish.")
 
 
