@@ -115,7 +115,7 @@ def photo_loop(file_list):
 
 mnaul_update_list = []
 	
-def manual_update():
+def manual_update(pin):
 	update_image(mnaul_update_list)
 
 GPIO.add_event_detect(BUTTONS[0], GPIO.FALLING, manual_update, bouncetime=250)
