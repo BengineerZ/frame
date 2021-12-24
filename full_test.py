@@ -70,7 +70,8 @@ GPIO.setup(BUTTONS, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # We're watching the "FALLING" edge (transition from 3.3V to Ground) and
 # picking a generous bouncetime of 250ms to smooth out button presses.
 
-GPIO.add_event_detect(BUTTONS[0], GPIO.FALLING, eject_usb, bouncetime=250)
+GPIO.add_event_detect(BUTTONS[1], GPIO.FALLING, eject_usb, bouncetime=250)
+
 
 ### Image setup:
 
@@ -110,8 +111,14 @@ def photo_loop(file_list):
 		t.start()
 		time.sleep(60)
 	print("Stopping as you wish.")
-		
 
+
+mnaul_update_list = []
+	
+def manual_update():
+	update_image(mnaul_update_list)
+
+GPIO.add_event_detect(BUTTONS[0], GPIO.FALLING, manual_update, bouncetime=250)
 
 
 while True:
@@ -122,6 +129,7 @@ while True:
 	if len(device_list) == 1:
 		print(time.time())
 		image_list = read_files()
+		mnaul_update_list[:] = image_list
 		l = threading.Thread(target=photo_loop, args=(image_list,))
 		l.start()
 		time.sleep(2)
@@ -133,4 +141,5 @@ while True:
 
 		print('usb removed')
 		l.do_run = False
+		mnaul_update_list.clear()
 			
