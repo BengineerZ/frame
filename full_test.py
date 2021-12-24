@@ -109,7 +109,7 @@ def photo_loop(file_list):
 		print('Photo loop')
 		t = threading.Thread(target=update_image, args=(file_list,))
 		t.start()
-		time.sleep(120)
+		time.sleep(43200)
 	print("Stopping as you wish.")
 
 
@@ -137,7 +137,7 @@ while True:
 			time.sleep(10)
 			print('checking if usb is still in')
 			check_usb()
-			print(time.time())
+			
 
 		print('usb removed')
 		l.do_run = False
